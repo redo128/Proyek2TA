@@ -1,8 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PenyewaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,29 +18,44 @@ use App\Http\Controllers\RegisterController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
-// Route::post('/login1', function () {
-//     return view('LoginPage.login');
+// Route::get('/', function () {
+//     return view('index');
 // });
-Route::get('/homepage', function () {
-    return view('HomePage.index');
-});
-Route::post('', function ($id) {
-    
-});
+// // Route::post('/login1', function () {
+// //     return view('LoginPage.login');
+// // });
+// Route::get('/homepage', function () {
+//     return view('HomePage.index');
+// });
+// Route::post('', function ($id) {
+// });
 
-Route::post('/LoginPost', [LoginController::class,'login'] );
-Route::get('/login', [LoginController::class,'index']);
-Route::get('/register', [RegisterController::class,'index']);
-Route::post('/RegisterPost', [RegisterController::class,'store'] );
-Route::get('/logout', [LoginController::class,'logout']);
-Route::group(['middleware' => ['auth']], function () {
-    Route::group(['middleware' => ['cek_login:admin']], function () {
+Route::post('/LoginPost', [LoginController::class, 'login']);
+Route::get('/login', [LoginController::class, 'index']);
+Route::get('/register', [RegisterController::class, 'index']);
+Route::post('/RegisterPost', [RegisterController::class, 'store']);
+Route::get('/logout', [LoginController::class, 'logout']);
+// Route::group(['middleware' => ['auth']], function () {
+//     Route::group(['middleware' => ['cek_login:admin']], function () {
+//         Route::resource('admin', AdminController::class);
+//     });
+//     Route::group(['middleware' => ['cek_login:penyewa']], function () {
+//         Route::resource('penyewa', AdminController::class);
+//     });
+// });
+
+Route::middleware(['auth'])->group(function () {
+
+    Route::middleware(['admin'])->group(function () {
         Route::resource('admin', AdminController::class);
     });
-    Route::group(['middleware' => ['cek_login:penyewa']], function () {
-        Route::resource('penyewa', AdminController::class);
+
+    Route::middleware(['penyewa'])->group(function () {
+        Route::resource('penyewa', PenyewaController::class);
+    });
+
+    Route::get('/logout', function () {
+        Auth::logout();
+        redirect('/login');
     });
 });
