@@ -20,6 +20,6 @@ class AdminMiddleware
         if (Auth::user()->level == "admin") {
             return $next($request);
         };
-        return redirect('/homepage');
+        // return redirect('/homepage');
     }
 }

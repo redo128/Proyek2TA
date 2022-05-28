@@ -20,6 +20,6 @@ class PenyewaMiddleware
         if (Auth::user()->level == "penyewa") {
             return $next($request);
         };
-        return redirect('/penyewa');
+        // return redirect('/penyewa');
     }
 }
