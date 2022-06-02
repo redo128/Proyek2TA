@@ -21,28 +21,12 @@ use App\Http\Controllers\PenyewaController;
 // Route::get('/', function () {
 //     return view('index');
 // });
-// // Route::post('/login1', function () {
-// //     return view('LoginPage.login');
-// // });
-// Route::get('/homepage', function () {
-//     return view('HomePage.index');
-// });
-// Route::post('', function ($id) {
-// });
 
 Route::post('/LoginPost', [LoginController::class, 'login']);
 Route::get('/login', [LoginController::class, 'index']);
 Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/RegisterPost', [RegisterController::class, 'store']);
 Route::get('/logout', [LoginController::class, 'logout']);
-// Route::group(['middleware' => ['auth']], function () {
-//     Route::group(['middleware' => ['cek_login:admin']], function () {
-//         Route::resource('admin', AdminController::class);
-//     });
-//     Route::group(['middleware' => ['cek_login:penyewa']], function () {
-//         Route::resource('penyewa', AdminController::class);
-//     });
-// });
 
 Route::middleware(['auth'])->group(function () {
 
