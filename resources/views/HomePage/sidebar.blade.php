@@ -44,7 +44,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="/merk" class="nav-link">
                 <i class="fas fa-columns nav-icon"></i>
                 <p>Data Merk</p>
               </a>
@@ -93,7 +93,7 @@
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="fas fa-car nav-icon"></i>
+                <i class="fas fa-receipt nav-icon"></i>
                 <p>Pemesanan</p>
               </a>
             </li>

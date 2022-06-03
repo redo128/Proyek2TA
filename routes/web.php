@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PenyewaController;
+use App\Http\Controllers\MerkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,15 +24,20 @@ use App\Http\Controllers\PenyewaController;
 // });
 
 Route::post('/LoginPost', [LoginController::class, 'login']);
+
 Route::get('/login', [LoginController::class, 'index']);
+
 Route::get('/register', [RegisterController::class, 'index']);
+
 Route::post('/RegisterPost', [RegisterController::class, 'store']);
+
 Route::get('/logout', [LoginController::class, 'logout']);
 
 Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['admin'])->group(function () {
         Route::resource('admin', AdminController::class);
+        Route::resource('merk', MerkController::class);
     });
 
     Route::middleware(['penyewa'])->group(function () {
