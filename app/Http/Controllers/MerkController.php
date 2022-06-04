@@ -55,7 +55,8 @@ class MerkController extends Controller
      */
     public function show($id)
     {
-        //
+        $merk = Merk::with('nama_merk')->where('id', $id)->first();
+        return view('MerkPage.detail', ['merk' => $merk]);
     }
 
     /**
