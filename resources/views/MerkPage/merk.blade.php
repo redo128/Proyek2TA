@@ -21,7 +21,7 @@
 
                                 <td>{{ $d -> nama_merk }}</td>
                                 <td>
-                                    <a class="btn btn-info" href="{{ route('merk.show', $merk->id) }}">Show</a>
+                                    <a class="btn btn-info" href="{{ route('merk.show', $d->id) }}">Show</a>
                                 </td>
                             </tr>
                             @endforeach
@@ -29,9 +29,9 @@
                         <div class="float-right mt-2">
                             <a class="btn btn-success" href="{{ route('merk.create') }}"> Input Merk</a>
                         </div>
-                        <!-- <div class="float-left mt-2">
+                        <div class="float-left mt-2">
                             {{ $merk->links() }}
-                        </div> -->
+                        </div>
                     </div>
                 </div>
             </div>
