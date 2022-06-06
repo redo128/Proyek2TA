@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Merk;
-
+use Illuminate\Support\Facades\DB;
 class MerkController extends Controller
 {
     /**
@@ -14,7 +14,7 @@ class MerkController extends Controller
      */
     public function index()
     {
-        $merk = Merk::orderBy('id', 'asc')->paginate(3);
+        $merk = Merk::orderBy('id', 'asc')->paginate(5);
         return view('Merkpage.merk', ['merk' => $merk]);
     }
 
@@ -47,16 +47,10 @@ class MerkController extends Controller
             ->with('success', 'Merk Berhasil Ditambahkan');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        $merk = Merk::with('nama_merk')->where('id', $id)->first();
-        return view('MerkPage.detail', ['merk' => $merk]);
+        $merk = Merk::find($id);
+        return view('MerkPage.detail', ['Merk' => $merk]);
     }
 
     /**
