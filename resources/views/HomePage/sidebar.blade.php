@@ -29,13 +29,15 @@
       </div>
     </div> -->
 
+    @if(auth()->user()->level== 'admin')
+
     <!-- Sidebar Menu -->
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>
               MASTER
@@ -78,6 +80,9 @@
       </ul>
     </nav>
 
+    @endif
+
+    @if(auth()->user()->level== 'penyewa')
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
@@ -98,13 +103,22 @@
               </a>
             </li>
           </ul>
+    </nav>
+    @endif
+
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
         <li class="nav-item bg-danger">
           <a href="/login" class="nav-link">
             <i class="bi bi-box-arrow-in-left"></i>
             <p>Logout</p>
           </a>
         </li>
+      </ul>
     </nav>
+
     <!-- /.sidebar-menu -->
   </div>
   <!-- /.sidebar -->

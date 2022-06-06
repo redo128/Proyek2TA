@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Merk;
 use Illuminate\Support\Facades\DB;
 class MerkController extends Controller
@@ -50,7 +51,7 @@ class MerkController extends Controller
     public function show($id)
     {
         $merk = Merk::find($id);
-        return view('MerkPage.detail', ['Merk' => $merk]);
+        return view('MerkPage.detail', ['merk' => $merk]);
     }
 
     /**
@@ -61,7 +62,8 @@ class MerkController extends Controller
      */
     public function edit($id)
     {
-        //
+        $merk = DB::table('merk')->where('id', $id)->first();
+        return view('MerkPage.edit', compact('merk'));
     }
 
     /**
@@ -73,7 +75,15 @@ class MerkController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'Nama' => 'required',
+        ]);
+
+        $merk = Merk::find($id);
+        $merk->nama_merk = $request->get('Nama');
+        $merk->save();
+        return redirect()->route('merk.index')
+            ->with('success', 'Merk Berhasil Di Update');
     }
 
     /**
@@ -84,6 +94,8 @@ class MerkController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Merk::find($id)->delete();
+        return redirect()->route('merk.index')
+            ->with('success', 'Merk Berhasil Dihapus');
     }
 }
