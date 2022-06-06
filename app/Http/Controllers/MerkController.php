@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Merk;
-
+use Illuminate\Support\Facades\DB;
 class MerkController extends Controller
 {
     /**
@@ -48,12 +48,6 @@ class MerkController extends Controller
             ->with('success', 'Merk Berhasil Ditambahkan');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $merk = Merk::find($id);
