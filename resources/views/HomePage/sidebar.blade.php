@@ -52,7 +52,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="/mobil" class="nav-link">
                 <i class="fas fa-car nav-icon"></i>
                 <p>Data Mobil</p>
               </a>

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\Mobil;
 class Merk extends Model
 {
     use HasFactory;
@@ -14,4 +14,7 @@ class Merk extends Model
     protected $fillable = [
         'nama_merk',
     ];
+    public function mobil(){
+        return $this->hasMany(Mobil::Class);
+    }
 }
