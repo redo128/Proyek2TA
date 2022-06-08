@@ -7,7 +7,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PenyewaController;
 use App\Http\Controllers\MerkController;
-use App\Http\Controllers\MobilController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +39,6 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['admin'])->group(function () {
         Route::resource('admin', AdminController::class);
         Route::resource('merk', MerkController::class);
-        Route::resource('mobil', MobilController::class);
     });
 
     Route::middleware(['penyewa'])->group(function () {

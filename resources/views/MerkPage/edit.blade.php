@@ -26,6 +26,7 @@
                         <input type="text" name="Nama" class="form-control" id="Nama" value="{{ $merk->nama_merk }}" aria-describedby="Nama">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
+                    <a class="btn btn-success mt-2 mb-2" href="{{ route('merk.index') }}">Kembali</a>
                 </form>
             </div>
         </div>
