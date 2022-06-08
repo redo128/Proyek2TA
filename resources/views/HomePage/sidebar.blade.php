@@ -58,21 +58,15 @@
               </a>
             </li>
             <li class="nav-item">
+              <a href="/pegawai" class="nav-link">
+                <i class="fas fa-user-tie nav-icon"></i>
+                <p>Data Pegawai</p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="fas fa-users nav-icon"></i>
-                <p>Data Pemesan</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fas fa-route nav-icon"></i>
-                <p>Data Perjalanan</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fas fa-receipt nav-icon"></i>
-                <p>Data Pesanan</p>
+                <p>Data Pelanggan</p>
               </a>
             </li>
           </ul>
