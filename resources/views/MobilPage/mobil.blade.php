@@ -34,12 +34,14 @@
                             </tr>
                             @endforeach
                         </table>
+                        @if(auth()->user()->level == 'admin')
                         <div class="float-right mt-2">
                             <a class="btn btn-success" href="{{ route('mobil.create') }}"> Input Mobil</a>
                         </div>
-                     <div class="float-left mt-2">
+                        @endif
+                        <div class="float-left mt-2">
                             {{ $paginate->links() }}
-                        </div> 
+                        </div>
                     </div>
                 </div>
             </div>
