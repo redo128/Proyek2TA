@@ -26,7 +26,7 @@
                             <tr>
 
                                 <td>{{ $p -> id_pegawai }}</td>
-                                <td><img width="75" height="75" src="{{ asset($p->foto_pegawai) }}"></td>
+                                <td><img width="75" height="75" src="{{ asset('storage/'.$p->foto_pegawai) }}"></td>
                                 <td>{{ $p -> nama_pegawai }}</td>
                                 <td>
                                     @if($p->jenis_kelamin==0)

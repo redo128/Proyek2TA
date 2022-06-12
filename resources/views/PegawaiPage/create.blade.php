@@ -12,7 +12,7 @@
                         <h3 class="card-title">Tambah Data Pegawai</h3>
                     </div>
 
-                    <form method="post" action="{{ route('pegawai.store') }}" id="myForm">
+                    <form method="post" action="{{ route('pegawai.store') }}" id="myForm" enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
@@ -29,7 +29,10 @@
                             </div>
                             <div class="form-group">
                                 <label for="JenisKelamin">Jenis Kelamin</label>
-                                <input type="text" name="JenisKelamin" class="form-control" id="JenisKelamin" placeholder="Masukkan Jenis Kelamin">
+                                <select id="JenisKelamin" class="form-control" name="JenisKelamin">
+                                    <option value="1" selected>Laki-laki</option>
+                                    <option value="0">Perempuan</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="Jabatan">Jabatan</label>

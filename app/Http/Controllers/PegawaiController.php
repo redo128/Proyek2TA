@@ -49,7 +49,10 @@ class PegawaiController extends Controller
 
         $pegawai = new Pegawai;
         $pegawai->id_pegawai = $request->get('id');
-        $pegawai->foto_pegawai = $request->get('Foto');
+        if ($request->file('Foto')) {
+            $image_name = $request->file('Foto')->store('images', 'public');
+        }
+        $pegawai->foto_pegawai = $image_name;
         $pegawai->nama_pegawai = $request->get('Nama');
         $pegawai->jenis_kelamin = $request->get('JenisKelamin');
         $pegawai->jabatan = $request->get('Jabatan');
@@ -105,7 +108,10 @@ class PegawaiController extends Controller
 
         $pegawai = Pegawai::find($id_pegawai);
         $pegawai->id_pegawai = $request->get('id');
-        $pegawai->foto_pegawai = $request->get('Foto');
+        if ($request->file('Foto')) {
+            $image_name = $request->file('Foto')->store('images', 'public');
+        }
+        $pegawai->foto_pegawai = $image_name;
         $pegawai->nama_pegawai = $request->get('Nama');
         $pegawai->jenis_kelamin = $request->get('JenisKelamin');
         $pegawai->jabatan = $request->get('Jabatan');
