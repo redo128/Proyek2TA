@@ -7,6 +7,8 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PenyewaController;
 use App\Http\Controllers\MerkController;
+use App\Http\Controllers\MobilController;
+use App\Http\Controllers\PegawaiController;
 
 
 /*
@@ -39,10 +41,13 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['admin'])->group(function () {
         Route::resource('admin', AdminController::class);
         Route::resource('merk', MerkController::class);
+        Route::resource('mobil', MobilController::class);
+        Route::resource('pegawai', PegawaiController::class);
     });
 
     Route::middleware(['penyewa'])->group(function () {
         Route::resource('penyewa', PenyewaController::class);
+        Route::get('/mobil', [MobilController::class, 'index']);
     });
 
     Route::get('/logout', function () {
