@@ -10,9 +10,17 @@
             <div class="card-body">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><b>ID Pegawai: </b>{{$pegawai->id_pegawai}}</li>
-                    <li class="list-group-item"><b>Foto Profil: </b>{{$pegawai->foto_pegawai}}</li>
+                    <li class="list-group-item"><b>Foto Profil: </b><br>
+                        <img src="{{ asset('storage/'.$pegawai->foto_pegawai) }}" alt="" width="100px">
+                    </li>
                     <li class="list-group-item"><b>Nama Pegawai: </b>{{$pegawai->nama_pegawai}}</li>
-                    <li class="list-group-item"><b>Jenis Kelamin: </b>{{$pegawai->jenis_kelamin}}</li>
+                    <li class="list-group-item"><b>Jenis Kelamin: </b>
+                        @if($pegawai->jenis_kelamin==0)
+                        Perempuan
+                        @else
+                        Laki-laki
+                        @endif
+                    </li>
                     <li class="list-group-item"><b>Jabatan: </b>{{$pegawai->jabatan}}</li>
                     <li class="list-group-item"><b>Alamat: </b>{{$pegawai->alamat}}</li>
                     <li class="list-group-item"><b>Telepon: </b>{{$pegawai->telepon}}</li>

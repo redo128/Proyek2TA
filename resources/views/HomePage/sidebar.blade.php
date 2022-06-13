@@ -29,7 +29,7 @@
       </div>
     </div> -->
 
-    @if(auth()->user()->level== 'admin')
+    @if(auth()->user()->level == 'admin')
 
     <!-- Sidebar Menu -->
     <nav class="mt-2">
@@ -76,11 +76,17 @@
 
     @endif
 
-    @if(auth()->user()->level== 'penyewa')
+    @if(auth()->user()->level == 'penyewa')
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+        <li class="nav-item">
+          <a href="/mobil" class="nav-link">
+            <i class="fas fa-car nav-icon"></i>
+            <p>Data Mobil</p>
+          </a>
+        </li>
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
@@ -94,6 +100,10 @@
               <a href="#" class="nav-link">
                 <i class="fas fa-receipt nav-icon"></i>
                 <p>Pemesanan</p>
+              </a>
+              <a href="#" class="nav-link">
+                <i class="fas fa-receipt nav-icon"></i>
+                <p>Pengembalian</p>
               </a>
             </li>
           </ul>
