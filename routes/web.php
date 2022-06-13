@@ -41,8 +41,8 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['admin'])->group(function () {
         Route::resource('admin', AdminController::class);
         Route::resource('merk', MerkController::class);
-        Route::resource('mobil', MobilController::class);
-        Route::resource('pegawai', PegawaiController::class);
+        Route::resource('merk', MobilController::class);
+        Route::resource('merk', PegawaiController::class);
     });
 
     Route::middleware(['penyewa'])->group(function () {
