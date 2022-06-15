@@ -17,7 +17,7 @@ class CreateMobilTable extends Migration
             $table->id('seri');
             $table->string('jenis_mobil');
             $table->string('varian');
-            $table->integer('nomor_plat');
+            $table->string('nomor_plat');
             $table->string('featured_image');
             $table->timestamps();
         });

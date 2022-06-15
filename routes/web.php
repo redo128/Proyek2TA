@@ -10,6 +10,7 @@ use App\Http\Controllers\MerkController;
 use App\Http\Controllers\MobilController;
 use App\Http\Controllers\PegawaiController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,6 +48,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['penyewa'])->group(function () {
         Route::resource('penyewa', PenyewaController::class);
+        Route::get('/mobil', [MobilController::class, 'index']);
     });
 
     Route::get('/logout', function () {

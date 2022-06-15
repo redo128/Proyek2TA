@@ -17,7 +17,7 @@ class PegawaiSeeder extends Seeder
         $pegawai = [
             [
                 'id_pegawai' => '1987051022',
-                'foto_pegawai' => 'adminLTE/dist/img/avatar.png',
+                'foto_pegawai' => 'images/avatar.png',
                 'nama_pegawai' => 'Ahmad Yasir',
                 'jenis_kelamin' => '1',
                 'jabatan' => 'Manager',
@@ -26,7 +26,7 @@ class PegawaiSeeder extends Seeder
             ],
             [
                 'id_pegawai' => '1990012522',
-                'foto_pegawai' => 'adminLTE/dist/img/avatar3.png',
+                'foto_pegawai' => 'images/avatar3.png',
                 'nama_pegawai' => 'Windi Gunawan',
                 'jenis_kelamin' => '0',
                 'jabatan' => 'Customer Service',
