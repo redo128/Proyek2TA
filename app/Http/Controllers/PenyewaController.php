@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\User;
+use DB;
 class PenyewaController extends Controller
 {
     /**
@@ -80,5 +81,10 @@ class PenyewaController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function datalist()
+    {
+        $datalist = DB::table('users')->where('level', 'penyewa')->get();;
+        return view('PenyewaPage.penyewa', ['penyewa' => $datalist]);
     }
 }

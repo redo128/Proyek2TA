@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('level',['admin','penyewa'])->default('penyewa');
+            $table->string('foto')->nullable();
+            $table->string('nohp')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

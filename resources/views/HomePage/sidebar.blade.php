@@ -64,7 +64,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="/datalist" class="nav-link">
                 <i class="fas fa-users nav-icon"></i>
                 <p>Data Pelanggan</p>
               </a>
