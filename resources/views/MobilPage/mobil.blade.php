@@ -29,7 +29,13 @@
                                 <td>{{ $m -> nomor_plat }}</td>
                                 <td>{{ $m -> merk-> nama_merk }}</td>
                                 <td>
-                                    <a class="btn btn-info" href="{{ route('mobil.show', $m->seri) }}">Show</a>
+                                    <form action="{{ route('mobil.destroy',['mobil'=>$m->id]) }}" method="POST">
+                                        <a class="btn btn-info" href="{{ route('mobil.show', $m->id) }}">Show</a>
+                                        <a class="btn btn-primary" href="{{ route('mobil.edit', $m->id) }}">Edit</a>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Mobil;
-use App\Models\Merk;
+use App\Models\Merk;    
 use Illuminate\Support\Facades\DB;
 class MobilController extends Controller
 {
@@ -16,7 +16,7 @@ class MobilController extends Controller
     public function index()
     {
         $mobil=Mobil::with('merk')->get();
-        $paginate = Mobil::orderBy('seri', 'asc')->paginate(5);
+        $paginate = Mobil::orderBy('id', 'asc')->paginate(5);
         return view('MobilPage.mobil', ['mobil' => $mobil,'paginate'=>$paginate]);
     }
 
@@ -48,9 +48,6 @@ class MobilController extends Controller
         $mobil->varian = $request->get('varian');
         $mobil->nomor_plat = $request->get('nomor_plat');
         $mobil->featured_image=$image_name;
-    //   $mobil->save();
-        // $merk=new Merk;
-        // $merk=Merk::find($request->get('nama_merk'));
         $idmerk=$request->get('nama_merk');
         $merk=Merk::find($idmerk);
         $mobil->merk()->associate($merk);
@@ -67,7 +64,8 @@ class MobilController extends Controller
      */
     public function show($id)
     {
-        //
+        $mobil = DB::table('mobil')->where('id', $id)->first();;
+        return view('MobilPage.detail', ['mobil' => $mobil]);
     }
 
     /**
@@ -78,7 +76,9 @@ class MobilController extends Controller
      */
     public function edit($id)
     {
-        //
+        $mobil = Mobil::with('merk')->where('id', $id)->first();
+        $merk=Merk::all();//mendapatkan data dari table kelas
+        return view('MobilPage.edit', compact('mobil','merk'));
     }
 
     /**
@@ -90,7 +90,26 @@ class MobilController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'jenis_mobil' => 'required',
+            'varian' => 'required',
+            'nomor_plat' => 'required',
+            'nama_merk' => 'required',
+        ]);
+
+        if($request->file('image')){
+            $image_name=$request->file('image')->store('images','public');
+        }
+        $mobil = Mobil::with('merk')->where('id', $id)->first();
+        $mobil->jenis_mobil = $request->get('jenis_mobil');
+        $mobil->varian = $request->get('varian');
+        $mobil->nomor_plat = $request->get('nomor_plat');
+        $mobil->featured_image=$image_name;
+        $merk=Merk::find($request->get('nama_merk'));
+        $mobil->merk()->associate($merk);
+        $mobil->save();
+        return redirect()->route('mobil.index')
+            ->with('success', 'Mobil Berhasil Ditambahkan');
     }
 
     /**
@@ -99,8 +118,10 @@ class MobilController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($seri)
     {
-        //
+        $mobil = DB::table('mobil')->where('id', $seri)->delete();;
+        return redirect()->route('mobil.index')
+            ->with('success', 'Data Mobil Berhasil Dihapus');
     }
 }

@@ -9,7 +9,7 @@ class Mobil extends Model
 {
     use HasFactory;
     protected $table = 'mobil';
-    protected $primarykey = 'seri';
+    protected $primarykey = 'id';
 
     protected $fillable = [
         'jenis_mobil',

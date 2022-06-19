@@ -14,7 +14,7 @@ class CreateMobilTable extends Migration
     public function up()
     {
         Schema::create('mobil', function (Blueprint $table) {
-            $table->id('seri');
+            $table->id();
             $table->string('jenis_mobil');
             $table->string('varian');
             $table->string('nomor_plat');
