@@ -5,10 +5,13 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CetakController;
 use App\Http\Controllers\PenyewaController;
 use App\Http\Controllers\MerkController;
 use App\Http\Controllers\MobilController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\SewaController;
+use App\Http\Controllers\Sewa2Controller;
 
 
 /*
@@ -43,13 +46,17 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('merk', MerkController::class);
         Route::resource('mobil', MobilController::class);
         Route::resource('pegawai', PegawaiController::class);
-        Route::get('/datalist', [PenyewaController::class,'datalist']);
+        Route::get('/datalist', [PenyewaController::class, 'datalist']);
+        Route::resource('sewa2', Sewa2Controller::class);
     });
 
     Route::middleware(['penyewa'])->group(function () {
         Route::resource('penyewa', PenyewaController::class);
-    
+        Route::get('/mobil2', [MobilController::class, 'index']);
+        Route::resource('sewa', SewaController::class);
     });
+
+    Route::get('cetak', CetakController::class)->name('cetak');
 
     Route::get('/logout', function () {
         Auth::logout();
