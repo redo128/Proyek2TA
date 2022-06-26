@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Merk;
+use App\Models\Mobil;
+use App\Models\SewaMobil;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -13,7 +17,11 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('homepage.index');
+        $mobil = Mobil::count();
+        $merk = Merk::count();
+        $pemesanan = SewaMobil::count();
+        $akun = User::where('level', 'penyewa')->count();
+        return view('homepage.index', compact('mobil', 'merk', 'pemesanan', 'akun'));
     }
 
     /**

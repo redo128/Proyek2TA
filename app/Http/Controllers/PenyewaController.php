@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Merk;
+use App\Models\Mobil;
+use App\Models\SewaMobil;
 use App\Models\User;
-use DB;
+use Illuminate\Support\Facades\DB;
+
 class PenyewaController extends Controller
 {
     /**
@@ -14,7 +18,11 @@ class PenyewaController extends Controller
      */
     public function index()
     {
-        return view('homepage.penyewa');
+        $mobil = Mobil::count();
+        $merk = Merk::count();
+        $pemesanan = SewaMobil::count();
+        $akun = User::where('level', 'penyewa')->count();
+        return view('homepage.penyewa', compact('mobil', 'merk', 'pemesanan', 'akun'));
     }
 
     /**
