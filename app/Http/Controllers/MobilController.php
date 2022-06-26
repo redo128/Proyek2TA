@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Mobil;
-use App\Models\Merk;    
+use App\Models\Merk;
 use Illuminate\Support\Facades\DB;
+
 class MobilController extends Controller
 {
     /**
@@ -15,9 +16,9 @@ class MobilController extends Controller
      */
     public function index()
     {
-        $mobil=Mobil::with('merk')->get();
+        $mobil = Mobil::with('merk')->get();
         $paginate = Mobil::orderBy('id', 'asc')->paginate(5);
-        return view('MobilPage.mobil', ['mobil' => $mobil,'paginate'=>$paginate]);
+        return view('MobilPage.mobil', ['mobil' => $mobil, 'paginate' => $paginate]);
     }
 
     /**
@@ -27,8 +28,8 @@ class MobilController extends Controller
      */
     public function create()
     {
-        $merk=Merk::all();
-        return view('MobilPage.create',['merk'=>$merk]);
+        $merk = Merk::all();
+        return view('MobilPage.create', ['merk' => $merk]);
     }
 
     public function store(Request $request)
@@ -38,18 +39,20 @@ class MobilController extends Controller
             'varian' => 'required',
             'nomor_plat' => 'required',
             'nama_merk' => 'required',
+            'tarif' => 'required',
         ]);
 
-        if($request->file('image')){
-            $image_name=$request->file('image')->store('images','public');
+        if ($request->file('image')) {
+            $image_name = $request->file('image')->store('images', 'public');
         }
         $mobil = new Mobil;
         $mobil->jenis_mobil = $request->get('jenis_mobil');
         $mobil->varian = $request->get('varian');
         $mobil->nomor_plat = $request->get('nomor_plat');
-        $mobil->featured_image=$image_name;
-        $idmerk=$request->get('nama_merk');
-        $merk=Merk::find($idmerk);
+        $mobil->tarif = $request->get('tarif');
+        $mobil->featured_image = $image_name;
+        $idmerk = $request->get('nama_merk');
+        $merk = Merk::find($idmerk);
         $mobil->merk()->associate($merk);
         $mobil->save();
         return redirect()->route('mobil.index')
@@ -77,8 +80,8 @@ class MobilController extends Controller
     public function edit($id)
     {
         $mobil = Mobil::with('merk')->where('id', $id)->first();
-        $merk=Merk::all();//mendapatkan data dari table kelas
-        return view('MobilPage.edit', compact('mobil','merk'));
+        $merk = Merk::all(); //mendapatkan data dari table kelas
+        return view('MobilPage.edit', compact('mobil', 'merk'));
     }
 
     /**
@@ -95,17 +98,19 @@ class MobilController extends Controller
             'varian' => 'required',
             'nomor_plat' => 'required',
             'nama_merk' => 'required',
+            'tarif' => 'required',
         ]);
 
-        if($request->file('image')){
-            $image_name=$request->file('image')->store('images','public');
+        if ($request->file('image')) {
+            $image_name = $request->file('image')->store('images', 'public');
         }
         $mobil = Mobil::with('merk')->where('id', $id)->first();
         $mobil->jenis_mobil = $request->get('jenis_mobil');
         $mobil->varian = $request->get('varian');
         $mobil->nomor_plat = $request->get('nomor_plat');
-        $mobil->featured_image=$image_name;
-        $merk=Merk::find($request->get('nama_merk'));
+        $mobil->tarif = $request->get('tarif');
+        $mobil->featured_image = $image_name;
+        $merk = Merk::find($request->get('nama_merk'));
         $mobil->merk()->associate($merk);
         $mobil->save();
         return redirect()->route('mobil.index')

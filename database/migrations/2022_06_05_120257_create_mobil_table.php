@@ -19,6 +19,7 @@ class CreateMobilTable extends Migration
             $table->string('varian');
             $table->string('nomor_plat');
             $table->string('featured_image');
+            $table->unsignedBigInteger('tarif');
             $table->timestamps();
         });
     }

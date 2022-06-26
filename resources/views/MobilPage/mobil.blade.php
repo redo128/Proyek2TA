@@ -18,7 +18,10 @@
                                 <th>Varian</th>
                                 <th>Plat Nomor</th>
                                 <th>Merk</th>
+                                <th>Tarif/Hari</th>
+                                @if(auth()->user()->level == 'admin')
                                 <th width="280px">Action</th>
+                                @endif
                             </tr>
                             @foreach ($paginate as $m)
                             <tr>
@@ -28,6 +31,8 @@
                                 <td>{{ $m -> varian }}</td>
                                 <td>{{ $m -> nomor_plat }}</td>
                                 <td>{{ $m -> merk-> nama_merk }}</td>
+                                <td>{{ $m -> tarif }}</td>
+                                @if(auth()->user()->level == 'admin')
                                 <td>
                                     <form action="{{ route('mobil.destroy',['mobil'=>$m->id]) }}" method="POST">
                                         <a class="btn btn-info" href="{{ route('mobil.show', $m->id) }}">Show</a>
@@ -37,6 +42,7 @@
                                         <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
                                 </td>
+                                @endif
                             </tr>
                             @endforeach
                         </table>

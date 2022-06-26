@@ -15,7 +15,10 @@
                     <li class="list-group-item"><b>Varian: </b>{{$mobil->varian}}</li>
                 </ul>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><b>Nomor Plat </b>{{$mobil->nomor_plat}}</li>
+                    <li class="list-group-item"><b>Nomor Kendaraan: </b>{{$mobil->nomor_plat}}</li>
+                </ul>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><b>Tarif per Hari: </b>{{$mobil->tarif}}</li>
                 </ul>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><img width="100" height="100" src="{{ asset('storage/'.$mobil->featured_image) }}"></li>
