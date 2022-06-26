@@ -19,7 +19,7 @@
       <!-- small box -->
       <div class="small-box bg-info">
         <div class="inner">
-          <h3>150</h3>
+          <h3>{{ $mobil }}</h3>
           <p>Data Mobil</p>
         </div>
         <div class="icon">
@@ -34,12 +34,12 @@
       <!-- small box -->
       <div class="small-box bg-success">
         <div class="inner">
-          <h3>53<sup style="font-size: 20px">%</sup></h3>
-          <p>Data Pemesan</p>
+          <h3>{{ $merk }}</sup></h3>
+          <p>Data Merk</p>
         </div>
         <div class="icon">
           <i>
-            <ion-icon name="people-outline"></ion-icon>
+            <ion-icon name="ribbon-outline"></ion-icon>
           </i>
         </div>
       </div>
@@ -49,12 +49,12 @@
       <!-- small box -->
       <div class="small-box bg-warning">
         <div class="inner">
-          <h3>44</h3>
+          <h3>{{ $pemesanan }}</h3>
           <p>Data Pesanan</p>
         </div>
         <div class="icon">
           <i>
-            <ion-icon name="bar-chart-outline"></ion-icon>
+            <ion-icon name="stats-chart-outline"></ion-icon>
           </i>
         </div>
       </div>
@@ -64,7 +64,7 @@
       <!-- small box -->
       <div class="small-box bg-danger">
         <div class="inner">
-          <h3>65</h3>
+          <h3>{{ $akun }}</h3>
           <p>Data Akun</p>
         </div>
         <div class="icon">
