@@ -26,7 +26,7 @@ use App\Http\Controllers\Sewa2Controller;
 */
 
 // Route::get('/', function () {
-//     return view('index');
+//     return view('dashboard');
 // });
 
 Route::post('/LoginPost', [LoginController::class, 'login']);
@@ -54,6 +54,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('penyewa', PenyewaController::class);
         Route::get('/mobil2', [MobilController::class, 'index']);
         Route::resource('sewa', SewaController::class);
+        Route::get('/sewa/pay/{id}', [SewaController::class, 'payment'])->name('sewa.payment');
+        Route::put('/sewa/pay/{id}', [SewaController::class, 'pay'])->name('sewa.pay');
     });
 
     Route::get('cetak', CetakController::class)->name('cetak');

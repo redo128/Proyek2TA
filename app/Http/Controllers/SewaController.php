@@ -10,6 +10,7 @@ use App\Models\SewaMobil;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class SewaController extends Controller
 {
@@ -61,6 +62,8 @@ class SewaController extends Controller
         $sewa->tanggal_sewa = Carbon::parse($request->get('TanggalSewa'));
         $sewa->tanggal_kembali = Carbon::parse($request->get('TanggalKembali'));
         $sewa->tarif = $mobil->tarif * $sewa->tanggal_kembali->diffInDays($sewa->tanggal_sewa);
+        // set status
+        $sewa->status = 'Paid Off';
         $sewa->save();
         return redirect()->route('sewa.index')
             ->with('success', 'Data Sewa Berhasil Ditambahkan');
@@ -134,5 +137,29 @@ class SewaController extends Controller
         SewaMobil::find($id)->delete();
         return redirect()->route('sewa.index')
             ->with('success', 'Data Sewa Berhasil Dihapus');
+    }
+
+    public function payment($id)
+    {
+        $sewa = SewaMobil::find($id);
+        return view('SewaPage.bayar', compact('sewa'));
+    }
+
+    public function pay(Request $request, $id)
+    {
+        $request->validate([
+            'nominal' => 'required|integer',
+        ]);
+
+        $sewa = SewaMobil::find($id);
+        if (((int)$request->get('nominal')) >= $sewa->tarif) {
+            $sewa->status = 'Paid';
+            $sewa->save();
+
+            return redirect()->route('sewa.index')
+                ->with('success', 'Pembayaran Berhasil Diterima');
+        }
+
+        return Redirect::back()->with('error', 'Nominal yang anda masukkan kurang :)');
     }
 }
