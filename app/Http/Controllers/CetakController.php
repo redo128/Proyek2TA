@@ -21,4 +21,5 @@ class CetakController extends Controller
         $pdf->setPaper('F4', 'landscape');
         return $pdf->stream();
     }
+
 }

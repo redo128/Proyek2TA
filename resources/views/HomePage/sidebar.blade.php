@@ -60,7 +60,7 @@
                 <i class="fas fa-receipt nav-icon"></i>
                 <p>Pemesanan</p>
               </a>
-              <a href="#" class="nav-link">
+              <a href="/pengembalian2" class="nav-link">
                 <i class="fas fa-receipt nav-icon"></i>
                 <p>Pengembalian</p>
               </a>
@@ -97,7 +97,7 @@
                 <i class="fas fa-receipt nav-icon"></i>
                 <p>Pemesanan</p>
               </a>
-              <a href="#" class="nav-link">
+              <a href="/pengembalian" class="nav-link">
                 <i class="fas fa-receipt nav-icon"></i>
                 <p>Pengembalian</p>
               </a>

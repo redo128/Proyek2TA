@@ -12,6 +12,7 @@ use App\Http\Controllers\MobilController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\SewaController;
 use App\Http\Controllers\Sewa2Controller;
+use App\Http\Controllers\PengembalianController;
 
 
 /*
@@ -47,18 +48,23 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('mobil', MobilController::class);
         Route::resource('pegawai', PegawaiController::class);
         Route::get('/datalist', [PenyewaController::class, 'datalist']);
+        Route::get('/pengembalian2', [AdminController::class, 'pengembalian']);
+        Route::get('editdb/{id}/{sewaid}',[AdminController::class,'ganti'])->name('admin.ganti');
         Route::resource('sewa2', Sewa2Controller::class);
+        Route::get('/cetakpengembalian', [AdminController::class,'cetakpengembalian']);
     });
 
     Route::middleware(['penyewa'])->group(function () {
         Route::resource('penyewa', PenyewaController::class);
         Route::get('/mobil2', [MobilController::class, 'index']);
         Route::resource('sewa', SewaController::class);
+        Route::resource('pengembalian', PengembalianController::class); 
         Route::get('/sewa/pay/{id}', [SewaController::class, 'payment'])->name('sewa.payment');
         Route::put('/sewa/pay/{id}', [SewaController::class, 'pay'])->name('sewa.pay');
     });
 
     Route::get('cetak', CetakController::class)->name('cetak');
+
 
     Route::get('/logout', function () {
         Auth::logout();

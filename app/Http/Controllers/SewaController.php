@@ -24,7 +24,6 @@ class SewaController extends Controller
         $paginate = SewaMobil::where('user_id', Auth::user()->id)->orderBy('id', 'asc')->paginate(5);
         return view('SewaPage.sewa', ['paginate' => $paginate]);
     }
-
     /**
      * Show the form for creating a new resource.
      *

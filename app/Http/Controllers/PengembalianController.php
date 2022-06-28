@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Merk;
-use App\Models\Mobil;
-use App\Models\SewaMobil;
-use App\Models\User;
-use App\Models\Pegawai;
-use App\Models\Pengembalian;
 use Illuminate\Http\Request;
-use PDF;
-
-class AdminController extends Controller
+use App\Models\Mobil;
+use App\Models\Pegawai;
+use App\Models\User;
+use App\Models\SewaMobil;
+use App\Models\Pengembalian;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+class PengembalianController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,11 +20,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $mobil = Mobil::count();
-        $merk = Merk::count();
-        $pemesanan = SewaMobil::count();
-        $akun = User::where('level', 'penyewa')->count();
-        return view('homepage.index', compact('mobil', 'merk', 'pemesanan', 'akun'));
+        $paginate = SewaMobil::where('user_id', Auth::user()->id)->orderBy('id', 'asc')->paginate(5);
+        return view('Pengembalian.pengembalian', ['paginate' => $paginate]);
     }
 
     /**
@@ -35,13 +32,6 @@ class AdminController extends Controller
     public function create()
     {
         //
-    }
-    public function pengembalian(){
-        $pengembalian = Pengembalian::orderBy('id', 'asc')->paginate(5);
-        $mobil = Mobil::all();
-        $pegawai = Pegawai::all();
-        $user=User::all();
-        return view('Pengembalian.admin',(compact('pengembalian', 'mobil', 'pegawai','user')));
     }
 
     /**
@@ -62,8 +52,8 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    { 
+
     }
 
     /**
@@ -72,24 +62,21 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function ganti($id,$sewaid)
+    public function edit($id)
     {
-        $sewa = Pengembalian::find($id);
-        $sewa->pengembalian = 'sudah';
-        $sewa->save(); 
-        $sewa2 = Sewamobil::find($sewaid);
-        $sewa2->pengembalian = 'sudah';
-        $sewa2->save(); 
+        $sewa = SewaMobil::find($id);
+        $sewa->pengembalian = 'pending';
+        $sewa->save();  
+        $pengembalian=new Pengembalian();
+        $pengembalian->sewa_id=$sewa->id;
+        $pengembalian->mobil_id=$sewa->mobil_id;
+        $pengembalian->user_id=$sewa->user_id;
+        $pengembalian->pegawai_id=$sewa->pegawai_id;
+        $pengembalian->batas_kembali=$sewa->tanggal_kembali;
+        $pengembalian->save();
+        return redirect()->route('pengembalian.index');
+    }
 
-        return redirect('/pengembalian2');
-    }
-    public function cetakpengembalian()
-    {
-        $paginate = Pengembalian::all();
-        $pdf = PDF::loadview('Pengembalian.cetak', compact('paginate'));
-        $pdf->setPaper('F4', 'landscape');
-        return $pdf->stream();
-    }
     /**
      * Update the specified resource in storage.
      *
@@ -97,10 +84,6 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
