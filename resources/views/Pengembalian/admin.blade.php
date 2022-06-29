@@ -25,7 +25,7 @@
                             @foreach ($pengembalian as $sewa)
                             <tr>
                                 <td>{{ $sewa -> sewa_id   }}</td>
-                                <td>{{ $sewa -> mobil -> jenis_mobil }}</td>
+                                <td>{{ $sewa -> mobil -> id }}</td>
                                 <td>{{ $sewa -> user-> name }}</td>
                                 <td>{{ $sewa -> pegawai->nama_pegawai }}</td>
                                 <td>{{ $sewa -> batas_kembali }}</td>
