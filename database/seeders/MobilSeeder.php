@@ -122,17 +122,17 @@ class MobilSeeder extends Seeder
             [
                 'merk_id' => 4,
                 'jenis_mobil' => 'Hatchback',
-                'varian' => 'Jazz Kuning',
+                'varian' => 'Jazz Merah',
                 'nomor_plat' => 'L 4002 AP',
-                'featured_image' => 'images/Hatchback Jazz Kuning.png',
+                'featured_image' => 'images/Hatchback Jazz Merah.png',
                 'Tarif' => 200000,
             ],
             [
                 'merk_id' => 4,
-                'jenis_mobil' => 'Hatchback',
+                'jenis_mobil' => 'SUV',
                 'varian' => 'CR-V Hitam',
                 'nomor_plat' => 'L 4003 AP',
-                'featured_image' => 'images/Hatchback CRV Hitam.png',
+                'featured_image' => 'images/SUV CRV Hitam.png',
                 'Tarif' => 350000,
             ],
             [
@@ -156,7 +156,7 @@ class MobilSeeder extends Seeder
                 'jenis_mobil' => 'Crossover',
                 'varian' => 'Livina Putih',
                 'nomor_plat' => 'L 6001 AP',
-                'featured_image' => 'images/Crossover Livina Putih.png',
+                'featured_image' => 'images/Crossover Livina.png',
                 'Tarif' => 300000,
             ],
         ];
