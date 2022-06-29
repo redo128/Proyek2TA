@@ -29,10 +29,10 @@
                                 <input type="text" name="Alamat" class="form-control" id="Alamat" placeholder="Masukkan Alamat" value="{{ $sewa->alamat }}">
                             </div>
                             <div class="form-group">
-                                <label for="JenisMobil">Jenis Mobil</label>
-                                <select class="form-control" name="JenisMobil">
+                                <label for="Varian">Varian Mobil</label>
+                                <select class="form-control" name="Varian">
                                     @foreach($mobil as $m)
-                                    <option value="{{ $m -> id }}" {{ $sewa->mobil_id == $m -> id ? 'selected' : '' }}>{{$m -> jenis_mobil}}</option>
+                                    <option value="{{ $m -> id }}" {{ $sewa->mobil_id == $m -> id ? 'selected' : '' }}>{{$m -> varian}}</option>
                                     @endforeach
                                 </select>
                             </div>

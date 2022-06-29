@@ -32,7 +32,7 @@ class SewaController extends Controller
     public function create()
     {
         $mobil = Mobil::all();
-        $pegawai = Pegawai::all();
+        $pegawai = Pegawai::where('jabatan', 'Customer Service')->get();
         return view('SewaPage.create', compact('mobil', 'pegawai'));
     }
 
@@ -47,7 +47,7 @@ class SewaController extends Controller
         $request->validate([
             'NamaPegawai' => 'required',
             'Alamat' => 'required',
-            'JenisMobil' => 'required',
+            'Varian' => 'required',
             'TanggalSewa' => 'required',
             'TanggalKembali' => 'required',
         ]);
@@ -55,7 +55,7 @@ class SewaController extends Controller
         $sewa->user()->associate(Auth::user());
         $pegawai = Pegawai::find($request->get('NamaPegawai'));
         $sewa->pegawai()->associate($pegawai);
-        $mobil = Mobil::find($request->get('JenisMobil'));
+        $mobil = Mobil::find($request->get('Varian'));
         $sewa->mobil()->associate($mobil);
         $sewa->alamat = $request->get('Alamat');
         $sewa->tanggal_sewa = Carbon::parse($request->get('TanggalSewa'));
@@ -90,7 +90,7 @@ class SewaController extends Controller
     {
         $sewa = SewaMobil::find($id);
         $mobil = Mobil::all();
-        $pegawai = Pegawai::all();
+        $pegawai = Pegawai::where('jabatan', 'Customer Service')->get();
         return view('SewaPage.edit', compact('sewa', 'mobil', 'pegawai'));
     }
 
@@ -106,7 +106,7 @@ class SewaController extends Controller
         $request->validate([
             'NamaPegawai' => 'required',
             'Alamat' => 'required',
-            'JenisMobil' => 'required',
+            'Varian' => 'required',
             'TanggalSewa' => 'required',
             'TanggalKembali' => 'required',
         ]);
@@ -114,7 +114,7 @@ class SewaController extends Controller
         $sewa->user()->associate(Auth::user());
         $pegawai = Pegawai::find($request->get('NamaPegawai'));
         $sewa->pegawai()->associate($pegawai);
-        $mobil = Mobil::find($request->get('JenisMobil'));
+        $mobil = Mobil::find($request->get('Varian'));
         $sewa->mobil()->associate($mobil);
         $sewa->alamat = $request->get('Alamat');
         $sewa->tanggal_sewa = Carbon::parse($request->get('TanggalSewa'));

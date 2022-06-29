@@ -28,10 +28,10 @@
                                 <input type="text" name="Alamat" class="form-control" id="Alamat" placeholder="Masukkan Alamat">
                             </div>
                             <div class="form-group">
-                                <label for="JenisMobil">Jenis Mobil</label>
-                                <select class="form-control" name="JenisMobil">
+                                <label for="Varian">Varian </label>
+                                <select class="form-control" name="Varian">
                                     @foreach($mobil as $m)
-                                    <option value="{{ $m -> id }}">{{$m -> jenis_mobil}}</option>
+                                    <option value="{{ $m -> id }}">{{$m -> varian}}</option>
                                     @endforeach
                                 </select>
                             </div>

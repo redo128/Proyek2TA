@@ -17,7 +17,7 @@
                                 <th>Nama Pegawai</th>
                                 <th>Nama Penyewa</th>
                                 <th>Alamat</th>
-                                <th>Jenis Mobil</th>
+                                <th>Varian Mobil</th>
                                 <th>Tanggal Sewa</th>
                                 <th>Tanggal Kembali</th>
                                 <th>Total Harga</th>
@@ -28,7 +28,7 @@
                                 <td>{{ $sewa -> pegawai -> nama_pegawai }}</td>
                                 <td>{{ $sewa -> user -> name}}</td>
                                 <td>{{ $sewa -> alamat }}</td>
-                                <td>{{ $sewa -> mobil -> jenis_mobil }}</td>
+                                <td>{{ $sewa -> mobil -> varian }}</td>
                                 <td>{{ $sewa -> tanggal_sewa }}</td>
                                 <td>{{ $sewa -> tanggal_kembali }}</td>
                                 <td>{{ $sewa -> tarif }}</td>

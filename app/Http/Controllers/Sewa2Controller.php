@@ -48,7 +48,7 @@ class Sewa2Controller extends Controller
         $request->validate([
             'NamaPegawai' => 'required',
             'Alamat' => 'required',
-            'JenisMobil' => 'required',
+            'Varian' => 'required',
             'TanggalSewa' => 'required',
             'TanggalKembali' => 'required',
         ]);
@@ -56,7 +56,7 @@ class Sewa2Controller extends Controller
         $sewa->user()->associate(Auth::user());
         $pegawai = Pegawai::find($request->get('NamaPegawai'));
         $sewa->pegawai()->associate($pegawai);
-        $mobil = Mobil::find($request->get('JenisMobil'));
+        $mobil = Mobil::find($request->get('Varian'));
         $sewa->mobil()->associate($mobil);
         $sewa->alamat = $request->get('Alamat');
         $sewa->tanggal_sewa = Carbon::parse($request->get('TanggalSewa'));
