@@ -133,7 +133,7 @@ class PegawaiSeeder extends Seeder
                 'telepon' => '087627666524'
             ],
             [
-                'id_pegawai' => '1990012532',
+                'id_pegawai' => '1990012533',
                 'foto_pegawai' => 'images/avatar.png',
                 'nama_pegawai' => 'Bagas Satriawan',
                 'jenis_kelamin' => '1',
