@@ -7,23 +7,25 @@
             <div class="col-6 mt-4">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Data Merk</h3>
+                        <h3 class="card-title">Data Label</h3>
                     </div>
 
                     <div class="card-body">
                         <table id="example2" class="table table-bordered table-hover">
                             <tr>
-                                <th>Nama Merk</th>
+                                <th>Nama Label</th>
+                                <th>Deskripsi Label</th>
                                 <th width="280px">Action</th>
                             </tr>
-                            @foreach ($merk as $d)
+                            @foreach ($label as $d)
                             <tr>
 
-                                <td>{{ $d -> nama_merk }}</td>
+                                <td>{{ $d -> nama_label }}</td>
+                                <td>{{ $d -> deskripsi }}</td>
                                 <td>
-                                    <form action="{{ route('merk.destroy',['merk'=>$d->id]) }}" method="POST">
-                                        <a class="btn btn-info" href="{{ route('merk.show', $d->id) }}">Show</a>
-                                        <a class="btn btn-primary" href="{{ route('merk.edit', $d->id) }}">Edit</a>
+                                    <form action="{{ route('label.destroy',['label'=>$d->id]) }}" method="POST">
+                                        <a class="btn btn-info" href="{{ route('label.show', $d->id) }}">Show</a>
+                                        <a class="btn btn-primary" href="{{ route('label.edit', $d->id) }}">Edit</a>
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Delete</button>
@@ -33,10 +35,10 @@
                             @endforeach
                         </table>
                         <div class="float-right mt-2">
-                            <a class="btn btn-success" href="{{ route('merk.create') }}"> Input Merk</a>
+                            <a class="btn btn-success" href="{{ route('label.create') }}"> Input Label</a>
                         </div>
                         <div class="float-left mt-2">
-                            {{ $merk->links() }}
+                            {{ $label->links() }}
                         </div>
                     </div>
                 </div>

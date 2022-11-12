@@ -9,10 +9,10 @@
             </div>
             <div class="card-body">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><b>Nama Merk: </b>{{$merk->nama_merk}}</li>
+                    <li class="list-group-item"><b>Nama Merk: </b>{{$label->nama_label}}</li>
                 </ul>
             </div>
-            <a class="btn btn-success mt-3 mb-2" href="{{ route('merk.index') }}">Kembali</a>
+            <a class="btn btn-success mt-3 mb-2" href="{{ route('label.index') }}">Kembali</a>
         </div>
     </div>
 </div>

@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
-class PenyewaMiddleware
+class PenggunaMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class PenyewaMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->level == "penyewa") {
+        if (Auth::user()->level == "pengguna") {
             return $next($request);
         };
         // return redirect('/penyewa');

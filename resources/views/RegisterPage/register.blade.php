@@ -4,6 +4,18 @@
 <div class="register-box">
 <div class="register-logo">
 <a href="../../index2.html"><b>Admin</b>LTE</a>
+<div class="card">
+    <div class="card-body register-card-body">
+      @if ($errors->any())
+            <div class="alert alert-danger">
+              <strong>Whoops!</strong> Inputan Kamu Ada Yang Salah<br><br>
+                <ul>
+                  @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                  @endforeach
+                </ul>
+          </div>
+      @endif
 </div>
 <div class="card">
 <div class="card-body register-card-body">
@@ -47,7 +59,7 @@
 
 </div>
 </form>
-<a href="/login" class="text-center">I already have a membership</a>
+<a href="/" class="text-center">I already have a membership</a>
 </div>
 
 </div>

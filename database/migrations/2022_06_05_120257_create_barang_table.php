@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMerkTable extends Migration
+class CreateBarangTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class CreateMerkTable extends Migration
      */
     public function up()
     {
-        Schema::create('merk', function (Blueprint $table) {
+        Schema::create('barang', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_merk', 100);
+            $table->string('nama_barang');
+            $table->string('featured_image');
+            $table->integer('stock')->nullable();
+            $table->unsignedBigInteger('label_id')->nullable();
+            $table->foreign('label_id')->references('id')->on('label');
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ class CreateMerkTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('merk');
+        Schema::dropIfExists('barang');
     }
 }

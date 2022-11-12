@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Merk;
-class MerkController extends Controller
+use App\Models\Label;
+class LabelController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class MerkController extends Controller
      */
     public function index()
     {
-        $merk = Merk::orderBy('id', 'asc')->paginate(5);
-        return view('Merkpage.merk', ['merk' => $merk]);
+        $label = Label::orderBy('nama_label', 'asc')->paginate(5);
+        return view('LabelPage.label', ['label' => $label]);
     }
 
     /**
@@ -25,7 +25,7 @@ class MerkController extends Controller
      */
     public function create()
     {
-        return view('MerkPage.create');
+        return view('LabelPage.create');
     }
 
     /**
@@ -37,20 +37,21 @@ class MerkController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'Nama' => 'required',
+            'Label' => 'required',
         ]);
 
-        $merk = new Merk;
-        $merk->nama_merk = $request->get('Nama');
-        $merk->save();
-        return redirect()->route('merk.index')
-            ->with('success', 'Merk Berhasil Ditambahkan');
+        $label = new Label;
+        $label->nama_label = $request->get('Label');
+        $label->deskripsi = $request->get('Deskripsi');
+        $label->save();
+        return redirect()->route('label.index')
+            ->with('success', 'Label Berhasil Ditambahkan');
     }
 
     public function show($id)
     {
-        $merk = Merk::find($id);
-        return view('MerkPage.detail', ['merk' => $merk]);
+        $label = Label::find($id);
+        return view('LabelPage.detail', ['label' => $label]);
     }
 
     /**
@@ -61,8 +62,8 @@ class MerkController extends Controller
      */
     public function edit($id)
     {
-        $merk = DB::table('merk')->where('id', $id)->first();
-        return view('MerkPage.edit', compact('merk'));
+        $label = DB::table('label')->where('id', $id)->first();
+        return view('LabelPage.edit', compact('label'));
     }
 
     /**
@@ -75,14 +76,15 @@ class MerkController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'Nama' => 'required',
+            'Label' => 'required',
         ]);
 
-        $merk = Merk::find($id);
-        $merk->nama_merk = $request->get('Nama');
-        $merk->save();
-        return redirect()->route('merk.index')
-            ->with('success', 'Merk Berhasil Di Update');
+        $label = Label::find($id);
+        $label->nama_label = $request->get('Label');
+        $label->deskripsi = $request->get('Deskripsi');
+        $label->save();
+        return redirect()->route('label.index')
+            ->with('success', 'Label Berhasil Di Update');
     }
 
     /**
@@ -93,8 +95,8 @@ class MerkController extends Controller
      */
     public function destroy($id)
     {
-        Merk::find($id)->delete();
-        return redirect()->route('merk.index')
-            ->with('success', 'Merk Berhasil Dihapus');
+        Label::find($id)->delete();
+        return redirect()->route('label.index')
+            ->with('success', 'Label Berhasil Dihapus');
     }
 }

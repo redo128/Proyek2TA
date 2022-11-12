@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class RelasiMerkMobilTable extends Migration
+class CreateLabelTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class RelasiMerkMobilTable extends Migration
      */
     public function up()
     {
-        Schema::table('mobil', function (Blueprint $table) {
-            $table->unsignedBigInteger('merk_id')->nullable();
-            $table->foreign('merk_id')->references('id')->on('merk');
-        
+        Schema::create('label', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama_label', 100);
+            $table->string('deskripsi')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -27,8 +28,6 @@ class RelasiMerkMobilTable extends Migration
      */
     public function down()
     {
-        Schema::table('mobil', function (Blueprint $table) {
-           $table->dropForeign('[merk_id]');
-        });
+        Schema::dropIfExists('label');
     }
 }

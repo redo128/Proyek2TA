@@ -20,7 +20,7 @@ class RegisterController extends Controller
          //melakukan validasi data
         $request->validate([
         'name' => 'required',
-        'email' => 'required',
+        'email' => 'required|unique:users',
         'password' => 'required',
     ]);
         $user = new User;
@@ -28,6 +28,6 @@ class RegisterController extends Controller
         $user->email = $request->get('email');
         $user->password = bcrypt($request->password);
         $user->save();
-        return redirect('/login')->with('success', 'User Berhasil Ditambahkan');
+        return redirect('/')->with('success', 'User Berhasil Ditambahkan');
 }
 }

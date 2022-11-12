@@ -2,17 +2,20 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CetakController;
-use App\Http\Controllers\PenyewaController;
-use App\Http\Controllers\MerkController;
-use App\Http\Controllers\MobilController;
+use App\Http\Controllers\InventarisController;
+use App\Http\Controllers\PenggunaController;
+use App\Http\Controllers\LabelController;
+use App\Http\Controllers\BarangController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\SewaController;
 use App\Http\Controllers\Sewa2Controller;
 use App\Http\Controllers\PengembalianController;
+
 
 
 /*
@@ -26,13 +29,10 @@ use App\Http\Controllers\PengembalianController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/login', [LoginController::class, 'index']);
 
 Route::post('/LoginPost', [LoginController::class, 'login']);
 
-Route::get('/login', [LoginController::class, 'index']);
 
 Route::get('/register', [RegisterController::class, 'index']);
 
@@ -44,9 +44,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['admin'])->group(function () {
         Route::resource('admin', AdminController::class);
-        Route::resource('merk', MerkController::class);
-        Route::resource('mobil', MobilController::class);
+        Route::resource('label', LabelController::class);
+        Route::resource('barang', BarangController::class);
         Route::resource('pegawai', PegawaiController::class);
+        Route::resource('inventaris', InventarisController::class);
         Route::get('/datalist', [PenyewaController::class, 'datalist']);
         Route::get('/pengembalian2', [AdminController::class, 'pengembalian']);
         Route::get('editdb/{id}/{sewaid}', [AdminController::class, 'ganti'])->name('admin.ganti');
@@ -54,8 +55,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/cetakpengembalian', [AdminController::class, 'cetakpengembalian']);
     });
 
-    Route::middleware(['penyewa'])->group(function () {
-        Route::resource('penyewa', PenyewaController::class);
+    Route::middleware(['pengguna'])->group(function () {
+        Route::resource('pengguna', PenggunaController::class);
         Route::get('/mobil2', [MobilController::class, 'index']);
         Route::resource('sewa', SewaController::class);
         Route::resource('pengembalian', PengembalianController::class);

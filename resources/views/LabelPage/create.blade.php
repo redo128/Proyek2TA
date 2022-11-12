@@ -9,15 +9,19 @@
 
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Tambah Data Merk</h3>
+                        <h3 class="card-title">Tambah Data LABEL</h3>
                     </div>
 
-                    <form method="post" action="{{ route('merk.store') }}" id="myForm">
+                    <form method="post" action="{{ route('label.store') }}" id="myForm">
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="Nama">Nama Merk</label>
-                                <input type="text" name="Nama" class="form-control" id="Nama" placeholder="Masukkan Nama Merk">
+                                <label for="Label">MASUKKAN LABEL</label>
+                                <input type="text" name="Label" class="form-control" id="Label" placeholder="Masukkan Label">
+                            </div>
+                            <div class="form-group">
+                                <label for="Deskripsi">Deskripsi</label>
+                                <input type="text" name="Deskripsi" class="form-control" id="Deskripsi" placeholder="Masukkan Deskripsi">
                             </div>
                         </div>
 

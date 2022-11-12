@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Merk;
-use App\Models\Mobil;
-use App\Models\SewaMobil;
+use App\Models\Label;
+use App\Models\Barang;
 use App\Models\User;
 use App\Models\Pegawai;
 use App\Models\Pengembalian;
@@ -20,11 +19,10 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $mobil = Mobil::count();
-        $merk = Merk::count();
-        $pemesanan = SewaMobil::count();
+        $barang = Barang::count();
+        $label = Label::count();
         $akun = User::where('level', 'penyewa')->count();
-        return view('homepage.index', compact('mobil', 'merk', 'pemesanan', 'akun'));
+        return view('homepage.index', compact('barang', 'label', 'akun'));
     }
 
     /**

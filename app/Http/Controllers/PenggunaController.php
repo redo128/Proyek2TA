@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Merk;
-use App\Models\Mobil;
-use App\Models\SewaMobil;
+use App\Models\Label;
+use App\Models\Barang;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
-class PenyewaController extends Controller
+class PenggunaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,11 +17,10 @@ class PenyewaController extends Controller
      */
     public function index()
     {
-        $mobil = Mobil::count();
-        $merk = Merk::count();
-        $pemesanan = SewaMobil::count();
+        $barang = Barang::count();
+        $label = Label::count();
         $akun = User::where('level', 'penyewa')->count();
-        return view('homepage.penyewa', compact('mobil', 'merk', 'pemesanan', 'akun'));
+        return view('homepage.penyewa', compact('barang', 'label', 'akun'));
     }
 
     /**

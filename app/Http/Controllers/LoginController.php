@@ -25,10 +25,10 @@ class LoginController extends Controller
             $level = Auth::user()->level;
             if ($level == "admin") {
                 return redirect()->to('admin');
-            } else if ($level == "penyewa") {
-                return redirect()->to('penyewa');
+            } else if ($level == "pengguna") {
+                return redirect()->to('pengguna');
             } else {
-                return redirect()->to('login');
+                return redirect()->to('/');
             }
         }
         return back();
