@@ -35,7 +35,7 @@
       <div class="small-box bg-success">
         <div class="inner">
           <h3>{{ $label }}</sup></h3>
-          <p>Data Merk</p>
+          <p>Data Label</p>
         </div>
         <div class="icon">
           <i>

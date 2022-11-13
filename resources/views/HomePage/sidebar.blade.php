@@ -52,17 +52,13 @@
             <li class="nav-item">
               <a href="/inventaris" class="nav-link">
                 <i class="fas fa-users nav-icon"></i>
-                <p>Data Inventaris</p>
+                <p>Barang Masuk </p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="/sewa2" class="nav-link">
-                <i class="fas fa-receipt nav-icon"></i>
-                <p>Pemesanan</p>
-              </a>
-              <a href="/pengembalian2" class="nav-link">
-                <i class="fas fa-receipt nav-icon"></i>
-                <p>Pengembalian</p>
+              <a href="/barangkeluar" class="nav-link">
+                <i class="fas fa-users nav-icon"></i>
+                <p>Barang Keluar </p>
               </a>
             </li>
           </ul>

@@ -33,7 +33,9 @@ Route::get('/login', [LoginController::class, 'index']);
 
 Route::post('/LoginPost', [LoginController::class, 'login']);
 
-
+Route::get('/', function () {
+    return view('index');
+});
 Route::get('/register', [RegisterController::class, 'index']);
 
 Route::post('/RegisterPost', [RegisterController::class, 'store']);
@@ -48,7 +50,11 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('barang', BarangController::class);
         Route::resource('pegawai', PegawaiController::class);
         Route::resource('inventaris', InventarisController::class);
-        Route::get('/datalist', [PenyewaController::class, 'datalist']);
+        Route::get('/barangkeluar', [InventarisController::class,'index2'])->name('inventaris.index2');
+        Route::get('/inputbarangkeluar', [InventarisController::class,'create2'])->name('inventaris.create2');
+        Route::post('/barangkeluarstore', [InventarisController::class,'store2'])->name('inventaris.store2');
+        Route::get('/cetakbarangmasuk', [InventarisController::class,'cetakmasuk'])->name('inventaris.cetakmasuk');
+        Route::get('/cetakbarangkeluar', [InventarisController::class,'cetakkeluar'])->name('inventaris.cetakkeluar');
         Route::get('/pengembalian2', [AdminController::class, 'pengembalian']);
         Route::get('editdb/{id}/{sewaid}', [AdminController::class, 'ganti'])->name('admin.ganti');
         Route::resource('sewa2', Sewa2Controller::class);
@@ -57,7 +63,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['pengguna'])->group(function () {
         Route::resource('pengguna', PenggunaController::class);
-        Route::get('/mobil2', [MobilController::class, 'index']);
         Route::resource('sewa', SewaController::class);
         Route::resource('pengembalian', PengembalianController::class);
         Route::get('/sewa/pay/{id}', [SewaController::class, 'payment'])->name('sewa.payment');
@@ -69,6 +74,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/logout', function () {
         Auth::logout();
-        redirect('/login');
+        return redirect('/login');
     });
 });

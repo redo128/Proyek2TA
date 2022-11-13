@@ -39,8 +39,8 @@
                                 @if(auth()->user()->level == 'admin')
                                 <td>
                                     <form action="{{ route('inventaris.destroy',$m->id) }}" method="POST">
-                                        <a class="btn btn-info" href="{{ route('inventaris.show', $m->id) }}">Show</a>
-                                        <a class="btn btn-primary" href="{{ route('inventaris.edit', $m->id) }}">Edit</a>
+                                        {{-- <a class="btn btn-info" href="{{ route('inventaris.show', $m->id) }}">Show</a>
+                                        <a class="btn btn-primary" href="{{ route('inventaris.edit', $m->id) }}">Edit</a> --}}
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Delete</button>
@@ -52,9 +52,12 @@
                         </table>
                         @if(auth()->user()->level == 'admin')
                         <div class="float-right mt-2">
-                            <a class="btn btn-success" href="{{ route('inventaris.create') }}"> Input Barang</a>
+                            <a class="btn btn-success" href="/inputbarangkeluar"> Input Barang</a>
                         </div>
                         @endif
+                        <div class="float-right mt-2">
+                            <a class="btn btn-primary" href="/cetakbarangkeluar"> Cetak Laporan</a>
+                        </div>
                         <div class="float-left mt-2">
                             {{ $paginate->links() }}
                         </div>

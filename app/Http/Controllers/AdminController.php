@@ -21,7 +21,7 @@ class AdminController extends Controller
     {
         $barang = Barang::count();
         $label = Label::count();
-        $akun = User::where('level', 'penyewa')->count();
+        $akun = User::count();
         return view('homepage.index', compact('barang', 'label', 'akun'));
     }
 
